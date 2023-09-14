@@ -43,9 +43,6 @@ function useFetch(url: string, mode: "simple" | "multiple" = "simple") {
           })
         )
           .then(() => {
-            tempPokemon.sort(
-              (poke1: Pokemon, poke2: Pokemon) => poke1.id - poke2.id
-            ); //TODO => refactor
             setData((curr: Pokemon[]) =>
               curr !== null ? [...curr, tempPokemon] : tempPokemon
             );
