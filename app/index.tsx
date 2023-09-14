@@ -3,7 +3,7 @@ import { router } from "expo-router";
 
 const Index: React.FC = () => {
   setTimeout(() => {
-    router.replace("/home");
+    router.replace("/pokedex");
   }, 1000);
 
   return (

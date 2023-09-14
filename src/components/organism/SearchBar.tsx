@@ -6,9 +6,6 @@ import { colors } from "../../utils/variables";
 const SearchBar: React.FC = () => {
   const [searchValue, setSearchValue] = useState<String>("");
 
-  //Get pokemon => console.log()
-  //if error => console.log()
-
   return (
     <>
       <View style={styles.container}>
