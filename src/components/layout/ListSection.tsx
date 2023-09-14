@@ -1,19 +1,14 @@
-import {
-  FlatList,
-  StyleSheet,
-  View,
-  ScrollView,
-  SafeAreaView,
-  Dimensions,
-} from "react-native";
+import { FlatList, StyleSheet, View, Text } from "react-native";
 import { host } from "../../utils/variables";
 import useFetch from "../../hooks/useFetch";
 import { PokemonCard } from "../organism";
+import { useState } from "react";
 
 const ListSection: React.FC = () => {
-  // ?offset=20&limit=200
-
-  const { data, loading, error } = useFetch(host + "/pokemon", "multiple");
+  const { data, next, loading, error } = useFetch(
+    host + "/pokemon",
+    "multiple"
+  );
 
   if (error) {
     console.log(error);
@@ -25,11 +20,15 @@ const ListSection: React.FC = () => {
         ? !error && (
             <FlatList
               style={styles.mainContainer}
+              numColumns={2}
+              columnWrapperStyle={{ gap: 15 }}
               data={data}
               renderItem={(elm) => <PokemonCard pokemon={elm.item} />}
               keyExtractor={(elm, index) => `${index}-${elm.id}`}
-              numColumns={2}
-              columnWrapperStyle={{ gap: 15 }}
+              //onEndReached={fetchNext} //Method to fetch more data
+              // onEndReachedThreshold={2} //Load more when 2 last
+              ListFooterComponent={<FooterList />}
+              ListEmptyComponent={() => <Text>No data available</Text>}
             />
           )
         : null}
@@ -37,9 +36,21 @@ const ListSection: React.FC = () => {
   );
 };
 
+const FooterList: React.FC = () => {
+  return (
+    <View style={styles.footerContainer}>
+      <Text>No more data available</Text>
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
   mainContainer: {
-    // padding: 20, //TODO : Refactor
+    paddingHorizontal: 20,
+  },
+  footerContainer: {
+    alignItems: "center",
+    marginTop: 20,
   },
 });
 

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 function useFetch(url: string, mode: "simple" | "multiple" = "simple") {
   const [data, setData] = useState<any>(null);
+  const [next, setNext] = useState<string | null>(null);
   const [loading, setLoading] = useState<Boolean | null>(null);
   const [error, setError] = useState<unknown>(null);
 
@@ -20,6 +21,11 @@ function useFetch(url: string, mode: "simple" | "multiple" = "simple") {
           return;
         }
 
+        //if pagination
+        if (data.next) {
+          setNext(data.next);
+        }
+
         var tempPokemon: unknown[] = [];
 
         Promise.all(
@@ -36,7 +42,7 @@ function useFetch(url: string, mode: "simple" | "multiple" = "simple") {
           })
         )
           .then(() => {
-            tempPokemon.sort((poke1, poke2) => poke1.id - poke2.id);
+            tempPokemon.sort((poke1, poke2) => poke1.id - poke2.id); //TODO => refactor
             setData((curr: unknown[]) =>
               curr !== null ? [...curr, tempPokemon] : tempPokemon
             );
@@ -54,7 +60,7 @@ function useFetch(url: string, mode: "simple" | "multiple" = "simple") {
     return () => controller.abort();
   }, [url]);
 
-  return { data, loading, error };
+  return { data, next, loading, error };
 }
 
 export default useFetch;
