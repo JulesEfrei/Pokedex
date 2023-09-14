@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { TextInput, View, StyleSheet } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { colors } from "../../utils/variables";
 
-interface Props {
-  onChange: React.Dispatch<React.SetStateAction<String>>;
-}
+const SearchBar: React.FC = () => {
+  const [searchValue, setSearchValue] = useState<String>("");
 
-const SearchBar: React.FC<Props> = ({ onChange }) => {
+  //Get pokemon => console.log()
+  //if error => console.log()
+
   return (
     <>
       <View style={styles.container}>
@@ -15,7 +16,7 @@ const SearchBar: React.FC<Props> = ({ onChange }) => {
         <TextInput
           style={styles.input}
           placeholder="Search Pokemon"
-          onChangeText={onChange}
+          onChangeText={(e) => setSearchValue(e)}
           autoCapitalize="none"
           autoCorrect={false}
         />

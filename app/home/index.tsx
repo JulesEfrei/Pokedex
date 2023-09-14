@@ -1,19 +1,16 @@
 import { SafeAreaView, View, StyleSheet } from "react-native";
 import { SearchBar, Header } from "../../src/components/organism";
 import { NavList } from "../../src/components/layout";
-import { useState } from "react";
 import { colors } from "../../src/utils/variables";
 
 const Index: React.FC = () => {
-  const [searchValue, setSearchValue] = useState<String>("");
-
   return (
     <>
       <SafeAreaView style={styles.body}>
         <View style={styles.mainLayout}>
           <Header title="What Pokemon are you looking for?" />
           <View style={styles.flexCenter}>
-            <SearchBar onChange={(e) => setSearchValue(e)} />
+            <SearchBar />
             <NavList />
           </View>
         </View>
