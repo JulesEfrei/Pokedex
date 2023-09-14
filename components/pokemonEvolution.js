@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Text, View, StyleSheet } from "react-native";
 
@@ -7,9 +6,8 @@ const PokemonEvolutions = ({ evolutionChainUrl }) => {
 
   useEffect(() => {
     fetch(evolutionChainUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        const evolutions = extractEvolutions(data.chain);
+      .then((response) => {
+        const evolutions = extractEvolutions(response.data);
         setEvolutionData(evolutions);
       })
       .catch((error) => {
@@ -20,9 +18,9 @@ const PokemonEvolutions = ({ evolutionChainUrl }) => {
       });
   }, [evolutionChainUrl]);
 
-  const extractEvolutions = (chain) => {
+  const extractEvolutions = (data) => {
     const evolutions = [];
-    let current = chain;
+    let current = data.chain;
 
     while (current) {
       evolutions.push({
@@ -43,24 +41,13 @@ const PokemonEvolutions = ({ evolutionChainUrl }) => {
 
   return (
     <View>
-      <Text style={styles.title}>Évolutions :</Text>
-      {evolutionData.map((evolution, index) => (
-        <Text key={index} style={styles.evolutionName}>
-          {evolution.name}
-        </Text>
-      ))}
+      <Text>Évolutions :</Text>
+      <Text>{evolutionData.map((evolution) => `${evolution.name}, `)}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  title: {
-    fontSize: 18,
-    marginBottom: 10,
-  },
-  evolutionName: {
-    fontSize: 16,
-  },
   PokeEvo: {
     left: 20,
     top: 30,

@@ -28,34 +28,30 @@ const PokemonAbout = ({ pokemonName }) => {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.infoText}>
+    <View>
+      {/* <Text style={styles.PokemonAbout}>
         Habitat : {pokemonData.species.habitat.name}
-      </Text>
-      <Text style={styles.infoText}>
+      </Text> */}
+      <Text style={styles.PokemonAbout}>
         Poids : {pokemonData.weight / 10} kg
-      </Text>
-      <Text style={styles.infoText}>
+      </Text>{" "}
+      <Text style={styles.PokemonAbout}>
         Taille : {pokemonData.height / 10} m
-      </Text>
-      <Text style={styles.infoText}>
+      </Text>{" "}
+      <Text style={styles.PokemonAbout}>
         Expérience de base : {pokemonData.base_experience} xp
       </Text>
-      <Text style={styles.infoText}>
+      {/* <Text style={styles.PokemonAbout}>
         Type : {pokemonData.types[0].type.name}
-      </Text>
+      </Text> */}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 20,
-    paddingTop: 20,
-  },
-  infoText: {
-    fontSize: 16,
-    marginBottom: 10,
+  PokemonAbout: {
+    left: 20,
+    top: 20,
   },
 });
 
