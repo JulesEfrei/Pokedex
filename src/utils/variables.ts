@@ -1,3 +1,5 @@
+import { SortType } from "./Types";
+
 export const host: string = "https://pokeapi.co/api/v2/";
 
 export const colors: Record<string, string> = {
@@ -35,4 +37,12 @@ export const navTab: { name: string; url: String; color: string }[] = [
   { name: "Abilities", url: "/abilities", color: "#76BDFE" },
   { name: "Items", url: "/items", color: "#FFCE4B" },
   { name: "Locations", url: "/locations", color: "#7C538C" },
+];
+
+export const sortPossibility: SortType[] = [
+  "id",
+  "name",
+  "weight",
+  "height",
+  "type",
 ];

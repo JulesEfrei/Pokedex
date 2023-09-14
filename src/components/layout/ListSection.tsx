@@ -3,8 +3,9 @@ import { host } from "../../utils/variables";
 import useFetch from "../../hooks/useFetch";
 import { PokemonCard } from "../organism";
 import { useState } from "react";
+import { SortType } from "../../utils/Types";
 
-const ListSection: React.FC = () => {
+const ListSection: React.FC<{ sort: SortType }> = ({ sort }) => {
   const { data, next, loading, error } = useFetch(
     host + "/pokemon",
     "multiple"
@@ -16,7 +17,7 @@ const ListSection: React.FC = () => {
 
   return (
     <>
-      {loading === false
+      {!loading
         ? !error && (
             <FlatList
               style={styles.mainContainer}
@@ -47,6 +48,7 @@ const FooterList: React.FC = () => {
 const styles = StyleSheet.create({
   mainContainer: {
     paddingHorizontal: 20,
+    zIndex: 0,
   },
   footerContainer: {
     alignItems: "center",
