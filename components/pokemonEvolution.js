@@ -4,6 +4,8 @@ import { Text, View, StyleSheet } from "react-native";
 const PokemonEvolutions = ({ evolutionChainUrl }) => {
   const [evolutionData, setEvolutionData] = useState([]);
 
+    // a compléter
+
   useEffect(() => {
     fetch(evolutionChainUrl)
       .then((response) => {
