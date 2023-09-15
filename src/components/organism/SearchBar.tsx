@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { TextInput, View, StyleSheet } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { colors } from "../../utils/variables";
+import { colors, host } from "../../utils/variables";
+import { router } from "expo-router";
 
 const SearchBar: React.FC = () => {
   const [searchValue, setSearchValue] = useState<String>("");
@@ -16,6 +17,7 @@ const SearchBar: React.FC = () => {
           onChangeText={(e) => setSearchValue(e)}
           autoCapitalize="none"
           autoCorrect={false}
+          onSubmitEditing={() => router.replace(`/pokemon/${searchValue}`)}
         />
       </View>
     </>
