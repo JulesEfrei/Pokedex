@@ -1,15 +1,20 @@
 import { useState, useEffect } from "react";
+import { Pokemon } from "../utils/models";
 
 function useFetch(url: string, mode: "simple" | "multiple" = "simple") {
   const [data, setData] = useState<any>(null);
-  const [next, setNext] = useState<string | null>(null);
-  const [loading, setLoading] = useState<Boolean | null>(null);
+  const [pagination, setPagination] = useState<{
+    prev: string | null;
+    next: string | null;
+  }>({ prev: null, next: null });
+  const [loading, setLoading] = useState<Boolean | null>(true);
   const [error, setError] = useState<unknown>(null);
 
   useEffect(() => {
-    setLoading(true);
-
     const controller = new AbortController();
+
+    setLoading(true);
+    setData(null);
 
     fetch(url, { signal: controller.signal })
       .then((res) => {
@@ -22,17 +27,26 @@ function useFetch(url: string, mode: "simple" | "multiple" = "simple") {
         }
 
         //if pagination
+        const temp = pagination;
         if (data.next) {
-          setNext(data.next);
+          temp.next = data.next;
         }
 
-        var tempPokemon: unknown[] = [];
+        if (data.previous) {
+          temp.prev = data.previous;
+        }
+
+        if (temp !== pagination) {
+          setPagination(temp);
+        }
+
+        var tempPokemon: Pokemon[] = [];
 
         Promise.all(
           data.results.map((elm: { name: string; url: string }) => {
             return fetch(elm.url)
               .then((res) => res.json())
-              .then((pokemon) => {
+              .then((pokemon: Pokemon) => {
                 return tempPokemon.push(pokemon);
               })
               .catch((err) => {
@@ -42,8 +56,7 @@ function useFetch(url: string, mode: "simple" | "multiple" = "simple") {
           })
         )
           .then(() => {
-            tempPokemon.sort((poke1, poke2) => poke1.id - poke2.id); //TODO => refactor
-            setData((curr: unknown[]) =>
+            setData((curr: Pokemon[]) =>
               curr !== null ? [...curr, tempPokemon] : tempPokemon
             );
           })
@@ -60,7 +73,7 @@ function useFetch(url: string, mode: "simple" | "multiple" = "simple") {
     return () => controller.abort();
   }, [url]);
 
-  return { data, next, loading, error };
+  return { data, pagination, loading, error };
 }
 
 export default useFetch;

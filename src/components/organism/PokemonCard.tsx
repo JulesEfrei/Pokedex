@@ -1,4 +1,4 @@
-import { Text, View, Image, StyleSheet } from "react-native";
+import { Text, View, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { Tags } from "../atom";
 import { colors, pokemonTypeColors } from "../../utils/variables";
 import {
@@ -7,11 +7,14 @@ import {
   capitalize,
 } from "../../utils/methodes";
 import { Type } from "../../utils/Types";
+import { router } from "expo-router";
+import { Pokemon } from "../../utils/models";
 
-const PokemonCard: React.FC<{ pokemon: any }> = ({ pokemon }) => {
+const PokemonCard: React.FC<{ pokemon: Pokemon }> = ({ pokemon }) => {
   return (
     <>
-      <View
+      <TouchableOpacity
+        onPress={() => router.replace(`/pokemon/${pokemon.id}`)}
         style={{
           ...styles.itemContainer,
           backgroundColor:
@@ -35,12 +38,12 @@ const PokemonCard: React.FC<{ pokemon: any }> = ({ pokemon }) => {
             <Image
               style={styles.img}
               source={{
-                uri: pokemon.sprites.front_default,
+                uri: pokemon.sprites.front_default!,
               }}
             />
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     </>
   );
 };
@@ -56,7 +59,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   id: {
-    color: colors.primary,
+    color: "#FDFDFD",
     position: "absolute",
     top: 10,
     right: 10,

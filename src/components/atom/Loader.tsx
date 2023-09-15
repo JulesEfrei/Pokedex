@@ -1,19 +1,23 @@
-import { View, Text, StyleSheet } from "react-native";
+import React from "react";
+import { View, Text, ActivityIndicator, StyleSheet } from "react-native";
 
 const Loader = () => {
   return (
-    <View style={styles.loader}>
-      <Text>Loader</Text>
+    <View style={styles.container}>
+      <ActivityIndicator size="large" color="#0000ff" />
+      <Text style={styles.text}> en cours de chargement...</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  loader: {
-    //style
-    borderColor: "", //Ajoute une couleur
-    borderWidth: 2, //Epaisseur de ta bordure
-    borderRadius: 50, //Courbe de ta bordure
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  text: {
+    marginTop: 10,
   },
 });
 
