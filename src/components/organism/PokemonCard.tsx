@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   id: {
-    color: colors.primary,
+    color: "#FDFDFD",
     position: "absolute",
     top: 10,
     right: 10,
