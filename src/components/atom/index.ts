@@ -1,3 +1,4 @@
 import Tags from "./Tags";
+import Loader from "./Loader";
 
-export { Tags };
+export { Tags, Loader };

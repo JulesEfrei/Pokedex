@@ -8,7 +8,7 @@ import {
   getBackgroundColorFromItem,
 } from "../../src/utils/methodes";
 import { AntDesign } from "@expo/vector-icons";
-import { Tags } from "../../src/components/atom";
+import { Loader, Tags } from "../../src/components/atom";
 import { Tabs, Type } from "../../src/utils/Types";
 import { TabBar } from "../../src/components/organism";
 import { useState } from "react";
@@ -37,6 +37,7 @@ const Index: React.FC = () => {
           </Text>
         </View>
       ) : null}
+      {loading ? <Loader /> : null}
       {!loading
         ? data !== null && (
             <SafeAreaView>
