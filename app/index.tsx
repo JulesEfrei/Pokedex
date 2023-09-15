@@ -2,7 +2,7 @@ import { SafeAreaView, View, StyleSheet } from "react-native";
 import { SearchBar, Header } from "../src/components/organism";
 import { NavList } from "../src/components/layout";
 import { colors } from "../src/utils/variables";
-import { SplashScreen } from "expo-router";
+import { SplashScreen, router } from "expo-router";
 import { useEffect } from "react";
 
 SplashScreen.preventAutoHideAsync();
