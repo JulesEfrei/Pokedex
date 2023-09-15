@@ -16,9 +16,9 @@ export const sortBy: (sort: SortType, pokemonList: Pokemon[]) => Pokemon[] = (
 ) => {
   switch (sort) {
     case "height":
-      return pokemonList.sort((a, b) => b.height - a.height);
+      return pokemonList.sort((a, b) => a.height - b.height);
     case "weight":
-      return pokemonList.sort((a, b) => b.weight - a.weight);
+      return pokemonList.sort((a, b) => a.weight - b.weight);
     case "name":
       return pokemonList.sort((a, b) => a.name.localeCompare(b.name));
     case "type":

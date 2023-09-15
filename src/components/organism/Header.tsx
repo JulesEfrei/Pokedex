@@ -33,7 +33,7 @@ const Header: React.FC<Props> = ({ title, icon = false, onChangeSort }) => {
               name="arrowleft"
               size={24}
               color="black"
-              onPress={() => router.replace("/home")}
+              onPress={() => router.replace("/")}
             />
             <TouchableOpacity onPress={() => setIsOpen(!isOpen)}>
               <Feather name="menu" size={24} color="black" />
