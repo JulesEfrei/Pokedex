@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TextInput, View, StyleSheet } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { colors, host } from "../../utils/variables";
+import { colors } from "../../utils/variables";
 import { router } from "expo-router";
 
 const SearchBar: React.FC = () => {
