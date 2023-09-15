@@ -22,7 +22,21 @@ const Index: React.FC = () => {
 
   return (
     <>
-      {error ? <Text>Error</Text> : null}
+      {error ? (
+        <View>
+          <View style={styles.topContainer}>
+            <AntDesign
+              name="arrowleft"
+              size={24}
+              color="black"
+              onPress={() => router.replace("/")}
+            />
+          </View>
+          <Text style={{ textAlign: "center" }}>
+            The pokemon you're searching doesn't exist
+          </Text>
+        </View>
+      ) : null}
       {!loading
         ? data !== null && (
             <SafeAreaView>
