@@ -1,18 +1,11 @@
-import {
-  FlatList,
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacityBase,
-  TouchableOpacity,
-  Button,
-} from "react-native";
+import { FlatList, StyleSheet, View, Text, Button } from "react-native";
 import { host } from "../../utils/variables";
 import useFetch from "../../hooks/useFetch";
 import { PokemonCard } from "../organism";
 import { SortType } from "../../utils/Types";
 import { sortBy } from "../../utils/methodes";
 import { useState } from "react";
+import { Loader } from "../atom";
 
 const ListSection: React.FC<{ sort: SortType }> = ({ sort }) => {
   const [url, setUrl] = useState<string>(host + "/pokemon");
@@ -38,6 +31,7 @@ const ListSection: React.FC<{ sort: SortType }> = ({ sort }) => {
   return (
     <>
       {error ? <Text>An error occured</Text> : null}
+      {loading ? <Loader /> : null}
       {!loading
         ? data !== null && (
             <FlatList
